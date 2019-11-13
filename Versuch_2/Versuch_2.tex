@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \title{Versuch 2 Fragen}
 \author{
-        Vaargk, Marko
+        Vaargk, Marko, Felix, Stephen
 
 }
 
@@ -31,6 +31,10 @@
 \item Wie funktioniert der Wechsel zwischen Prozesstacks?
 \item Was macht restoreContext?
 \item Was passiert wenn in os_exec die ISR aufgerufen wird? - Nichts da kritischer Bereich
+\item wie heißt der Befehl mit dem bei restoreContext der PC aus dem Prozessstack geladen wird? - Reti (return interrupt)
+\item Warum schreiben wir überhaupt ein Multitasking Betriebssystem?
+\item Warum setzen wir den StackPointer in der ISR auf den ISR stack bottom?
+\item Was kann passieren, wenn wir den Stackpointer beim Prozesswechsel nicht auf den SchedulerStack zeigen lassen, bzw. Geht das? Warum geht das? Warum machen wir es trotzdem? - mehr verfügbarer Speicher im Schedulerstack als im Prozessstack
 \end{itemize}
 \end{document}
 
