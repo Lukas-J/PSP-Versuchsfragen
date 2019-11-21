@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \title{Versuch 2 Fragen}
-\author{Vaargk Marko Felix Stephen}
+\author{Vaargk Marko Felix Stephen David}
 
 \begin{document}
 \maketitle
@@ -12,16 +12,27 @@
 \item Was ist ein Scheduler?
 \item Was ist ein Laufzeitkontext? Wozu dient dieser?
 \item Warum und was ist ein Leerlaufprozess?
-\item Was ist ein kritischer Bereich? Was ist eine atomarer Bereich?
-\item Was passiert bei einem Stack Overflow? Was bedeutet Inkosistenz?
-\item Was für ein Verhalten passiert beim Stack Overflow und kann man ihn rückgängig machen?
-\item Wie erkannt man einen Stack overflow?
+\item Was ist ein kritischer Bereich? Was ist ein atomarer Bereich?
+\item Ist die Funktion os\_EnterCriticalSection() ein kritischer Bereich? -nein, da wir das GIEB deaktivieren (dadurch atomar)
+\item Was passiert bei einem Stack Overflow? Was bedeutet Inkosistenz? -\\
+      Bei einem Stack Overflow speichert der Prozess zu viele Bytes, sodass der zugewiesene Stackbereich nicht ausreicht. Dadurch wird der Stack des "darüber" liegenden Prozesses beschrieben. Inkonsistenz bedeutet, dass sich der Stackbereich eines Prozesses ohne dessen Ausführung ändert.
+\item Was für ein Verhalten passiert beim Stack Overflow und kann man ihn rückgängig machen? -\\
+      Das Verhalten nach einem Stack Overflow ist undefiniert. Ein Stack Overflow kann nicht rückgängig gemacht werden.
+\item Wie erkannt man einen Stack overflow? -\\
+      Wir nutzen Hashing (XOR von allen Bytes des Stackbereiches).
+\item Kann man einen Stack Overflow möglicherweise nicht erkennen? -\\
+      Ja, falls der berechnete Hashwert gleich ist mit dem vorherigen, jedoch sich der Stack verändert hat. (Bspw. 3 Bytes, alle jeweils 1 vorher. Nachher sind 2 Bytes 0 und ein Byte 1. $\Rightarrow$ gleicher Hashwert)
+\item Es gibt noch bessere Verfahren, um einen Stack Overflow zu erkennen. Was könnte der Grund dafür sein, dass wir diese hier nicht benutzen?\\-
+      Möglicherweise sind die Verfahren aufwendiger und haben auch eine höhere Laufzeit, welche sich bei einem Mikrokontroller, während des Kontextwechsels stark auf die gesamte Effizienz auswirkt.
 \item Wie ist der SRAM aufgeteilt?
+\item Wie speichert der Stack? - LIFO Prinzip, also von unten nach oben.
+\item Wieso speichert der Stack nach diesem Prinzip? - Stack und Heap sollen sich nicht gegenseitig (durch bspw. Overflow) beschreiben können.
 \item Strings müssen in Flash gespeichert werden sonst Speicherknappheit
 \item Was speichern wir zu einem Prozess?
 \item Wenn man einen neuen Prozess anlegt was und in welcher Reihenfolge müssen wir dann machen?
+\item Wie oft wird der Scheduler aufgerufen?
 \item Wenn der Scheduler wechselt was und in welcher Reihenfolge passiert dann? Ganz kleinschrittig!!!
-\item Was passiert beim Prozessstack vorbbereiten?
+\item Was passiert beim Prozessstack vorbereiten?
 \item Werden die Register beim neuen Prozess direkt beschrieben? -nein Was passiert da genau?
 \item Ganz genau alles zu stackpointer und deren Verwendung wissen. Ganz wichtig Versuchsdokument Seite 17 Punkt 4
 \item Was passiert beim Scheduler init und genau kleinschrittig und Reihenfolge der Schritte wissen!
@@ -34,4 +45,3 @@
 \item Was kann passieren, wenn wir den Stackpointer beim Prozesswechsel nicht auf den SchedulerStack zeigen lassen, bzw. Geht das? Warum geht das? Warum machen wir es trotzdem? - mehr verfügbarer Speicher im Schedulerstack als im Prozessstack
 \end{itemize}
 \end{document}
-
