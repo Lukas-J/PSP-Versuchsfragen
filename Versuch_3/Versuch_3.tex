@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \title{Versuch 2 Fragen}
-\author{Lukas, Felix}
+\author{Lukas, Felix, Hauke, Tom}
 
 \begin{document}
 \maketitle
@@ -21,10 +21,11 @@
     \item Wie wird der Speicher addressiert?
     \item Warum darf der Leerlaufprozess nicht terminieren?
     \item Wofür brauchen wir den dispatcher.
-    \item Erkläre den dispatcher und kill.
+    \item Erkläre den dispatcher und kill. (Was passiert mit den Critical Sections?)
     \item Was geschieht, wenn ein Prozess terminiert, der sich in einer kritischen Sektion befindet?
-    \item Was passiert, wenn ein Prozess os_kill  mit seiner eigenen PID aufruft?
-    \item Was passiert konkret, wenn wir in os_kill nicht in die Schleife (die auf einen neuen Prozess vom Scheduler wartet) gehen?
+    \item Was passiert, wenn ein Prozess os\_kill  mit seiner eigenen PID aufruft?
+    \item Was passiert konkret, wenn wir in os\_kill nicht in die Schleife (die auf einen neuen Prozess vom Scheduler wartet) gehen?
+    \item Was muss man machen, damit der mem\_driver initialisiert wird? - Nichts die init() Methode ist leer. 
 \end{itemize}
 
 \end{document}
