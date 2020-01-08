@@ -1,0 +1,79 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[top=3cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[ngerman]{babel}
+
+\title{Versuch 5 Fragen}
+\author{Marko, Felix, Steffen}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+\item Erkläre os_yield() / wie implementiert?
+Wieso gehen wir bei os_yield() aus allen kritischen Bereichen vor dem Interrupt?
+- damit nach dem Aufruf des Interrupts nicht dauerhaft der gewählte Prozess durchläuft
+
+\item Wo wurde os_yield verwendet? 
+- shared memory
+
+\item Kommen wir zu shared memory:
+Wie sieht deine neue nibble Maske für welche zustände aus? 
+
+\item Welche Hilfs Funktionen hast du geschrieben.
+- os_sh_readOpen
+- os_sh_writeOpen
+- os_sh_close
+
+\item Was machen sie?
+- Bit masken umschreiben (dazu genau erklären was zu was)
+
+\item Yielden sie nur einmal? 
+- nein, yield() in einer while schlefie
+
+\item Wo verwendet ihr critical section/in welchen Funktionen?
+- os_sh_readOpen
+- os_sh_writeOpen
+- os_sh_close
+
+\item Warum nur dort?
+- damit während des lesens oder schreibens weitere andere Processe arbeiten
+
+\item Brauchen wir bitmasken, wenn die shared memory nur ein byte groß ist?
+- nein, weil ein byte operationen Atomar sind
+
+\item Welche attribute hat dir Funktion os_sh_write oder os_sh_read?
+- heap, ptr, ???, offset, length
+
+\item Was macht der offset? Wo wird er eingesetzt?
+- offset wird auf shared memory angewandt
+
+\item Wieviele queues.
+- 4
+
+\item Welche timeslices?
+- 1, 2, 4 ,8
+
+\item Höchste prio hat welche timeslices?
+- 1
+
+\item Wie bestimmen wir, welcher process in welcher queue ist.
+- mit den 2 MSB der Prio
+
+\item Wie bestimmen wir, welchen Prozess wir aus einer queue nehmen?
+- mit queue [tail]
+
+\item In der mlfq, es befindet sich 1 prozess in der ersten queue. Wie gehen wir vor?
+- timeslice verringen
+- und abhängig von der queue woanders einfügen
+
+\item Und wenn er blocked ist?
+- nach hinten in die queue schieben, und nächsten prüfen
+
+\item Wieviele Prozesse können gleichzeitig blocked sein?
+- 1, da nach jeden osyield wieder ISR aufgerufen wird und dort alle blocked auf nicht blocked gesetzt werden
+\end{itemize}
+
+Guter Link mit toller Zusammenfassung des Versuchs:
+
+https://docs.google.com/document/d/1hKJPj7zuzHpVJaf7l3_A3NGMaAHzxF6JSqp8GAGAWh0/edit
+\end{document}
